@@ -31,10 +31,10 @@ public class MapEngine {
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
     MessageCli.INSERT_COUNTRY.printMessage();
-    String userInput = Utils.scanner.nextLine();
-    userInput = Utils.capitalizeFirstLetterOfEachWord(userInput.strip());
-    if (!countries.containsKey(userInput)) {
-      throw new CountryNotFoundException();
+    try {
+      exception(countries);
+    } catch (CountryNotFoundException e) {
+
     }
   }
 
