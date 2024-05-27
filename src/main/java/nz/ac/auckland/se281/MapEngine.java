@@ -34,14 +34,14 @@ public class MapEngine {
     String userInput;
     boolean validCountry = false;
     MessageCli.INSERT_COUNTRY.printMessage();
-    userInput = Utils.scanner.nextLine();
     while (!validCountry) {
+      userInput = Utils.scanner.nextLine();
       try {
         userInput = userInput.strip();
         inputChecks.exception(countries, userInput);
         validCountry = true;
       } catch (CountryNotFoundException e) {
-        MessageCli.INVALID_COUNTRY.printMessage(userInput);
+        MessageCli.INVALID_COUNTRY.printMessage(Utils.capitalizeFirstLetterOfEachWord(userInput));
       }
     }
   }
