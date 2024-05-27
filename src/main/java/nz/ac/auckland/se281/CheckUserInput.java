@@ -8,15 +8,12 @@ public class CheckUserInput {
   private String tax;
   private String userInput;
 
-  public void exception(Map<String, Country> countries) {
-    userInput = Utils.scanner.nextLine();
-    userInput = userInput.strip();
+  public void exception(Map<String, Country> countries, String userInput) {
     if (userInput.isEmpty()) {
       throw new CountryNotFoundException();
     }
     userInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
     if (!countries.containsKey(userInput)) {
-      MessageCli.INVALID_COUNTRY.printMessage(userInput);
       throw new CountryNotFoundException();
     } else {
       name = countries.get(userInput).getName();
