@@ -27,9 +27,7 @@ public class MapEngine {
   }
 
   /** this method is invoked when the user run the command info-country. */
-  public void showInfoCountry() {
-    // add code here
-  }
+  public void showInfoCountry() {}
 
   /** this method is invoked when the user run the command route. */
   public void showRoute() {}
