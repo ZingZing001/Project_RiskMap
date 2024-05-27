@@ -33,15 +33,15 @@ public class MapEngine {
     CheckUserInput inputChecks = new CheckUserInput();
     String userInput;
     boolean validCountry = false;
+    MessageCli.INSERT_COUNTRY.printMessage();
+    userInput = Utils.scanner.nextLine();
     while (!validCountry) {
       try {
-        MessageCli.INSERT_COUNTRY.printMessage();
-        userInput = Utils.scanner.nextLine();
         userInput = userInput.strip();
         inputChecks.exception(countries, userInput);
-        validCountry = true; // If no exception is thrown, the country is valid
+        validCountry = true;
       } catch (CountryNotFoundException e) {
-
+        MessageCli.INVALID_COUNTRY.printMessage(userInput);
       }
     }
   }
