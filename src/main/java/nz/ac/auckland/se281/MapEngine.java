@@ -1,12 +1,15 @@
 package nz.ac.auckland.se281;
 
+import java.util.HashMap;
 import java.util.List;
 
 /** This class is the main entry point. */
 public class MapEngine {
+  private HashMap<String, List<String>> adjacencyList;
 
   public MapEngine() {
     // add other code here if you want
+    adjacencyList = new HashMap<>();
     loadMap(); // keep this mehtod invocation
   }
 
