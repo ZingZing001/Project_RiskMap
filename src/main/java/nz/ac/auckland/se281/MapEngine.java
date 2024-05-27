@@ -3,6 +3,7 @@ package nz.ac.auckland.se281;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 /** This class is the main entry point. */
 public class MapEngine {
@@ -10,7 +11,7 @@ public class MapEngine {
   private FormCStructure loadC;
   private FormAStructure loadA;
   private Map<String, Country> countries;
-  private Map<String, List<String>> adjacentCountries;
+  private Map<String, Queue<String>> adjacentCountries;
 
   public MapEngine() {
     loadC = new FormCStructure();
