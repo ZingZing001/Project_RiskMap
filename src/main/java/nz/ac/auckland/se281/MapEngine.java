@@ -33,12 +33,9 @@ public class MapEngine {
     CheckUserInput inputChecks = new CheckUserInput();
     String userInput;
     MessageCli.INSERT_COUNTRY.printMessage();
-    userInput = Utils.scanner.nextLine();
-    userInput = Utils.capitalizeFirstLetterOfEachWord(userInput.strip());
     try {
-      inputChecks.exception(countries, userInput);
+      inputChecks.exception(countries);
     } catch (CountryNotFoundException e) {
-      MessageCli.INVALID_COUNTRY.printMessage(userInput);
     }
   }
 
