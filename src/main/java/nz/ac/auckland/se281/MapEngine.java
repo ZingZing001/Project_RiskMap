@@ -23,6 +23,7 @@ public class MapEngine {
       String country = splited[0];
       String continent = splited[1];
       int tax = Integer.parseInt(splited[2]);
+      Countries.put(country, new Country(country, continent, tax));
     }
 
     // add code here to create your data structures
