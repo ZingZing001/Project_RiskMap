@@ -9,21 +9,23 @@ public class MapEngine {
 
   private FormCStructure loadC;
   private FormAStructure loadA;
+  private Map<String, Country> countries;
+  private Map<String, List<String>> adjacentCountries;
 
   public MapEngine() {
     loadC = new FormCStructure();
     loadA = new FormAStructure();
+    countries = new HashMap<>();
+    adjacentCountries = new HashMap<>();
     loadMap(); // keep this mehtod invocation
   }
 
   /** invoked one time only when constracting the MapEngine class. */
   private void loadMap() {
-    Map<String, Country> Countries = new HashMap<>();
-    Map<String, List<String>> adjacentCountries = new HashMap<>();
-    List<String> countries = Utils.readCountries();
-    List<String> adjacencies = Utils.readAdjacencies();
-    Countries = loadC.FormStructure(countries);
-    adjacentCountries = loadA.FormStructure(adjacencies);
+    List<String> countriesRaw = Utils.readCountries();
+    List<String> adjacenciesRaw = Utils.readAdjacencies();
+    countries = loadC.FormStructure(countriesRaw);
+    adjacentCountries = loadA.FormStructure(adjacenciesRaw);
   }
 
   /** this method is invoked when the user run the command info-country. */
