@@ -3,15 +3,16 @@ package nz.ac.auckland.se281;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FormAStructure {
-  private HashMap<String, List<String>> adjacencyList;
+  private Map<String, List<String>> adjacencyList;
 
   public FormAStructure() {
     adjacencyList = new HashMap<>();
   }
 
-  public HashMap<String, List<String>> FormStructure(List<String> adjacencies) {
+  public Map<String, List<String>> FormStructure(List<String> adjacencies) {
     for (String adjacentCountriesLines : adjacencies) {
       String[] splited = adjacentCountriesLines.split(",");
       String country = splited[0];
