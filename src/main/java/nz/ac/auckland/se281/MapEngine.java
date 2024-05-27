@@ -30,11 +30,15 @@ public class MapEngine {
 
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
+    CheckUserInput inputChecks = new CheckUserInput();
+    String userInput;
     MessageCli.INSERT_COUNTRY.printMessage();
+    userInput = Utils.scanner.nextLine();
+    userInput = Utils.capitalizeFirstLetterOfEachWord(userInput.strip());
     try {
-      exception(countries);
+      inputChecks.exception(countries, userInput);
     } catch (CountryNotFoundException e) {
-
+      MessageCli.INVALID_COUNTRY.printMessage(userInput);
     }
   }
 
