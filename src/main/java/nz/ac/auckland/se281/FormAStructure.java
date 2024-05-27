@@ -20,6 +20,7 @@ public class FormAStructure {
     for (String adjacentCountriesLines : adjacencies) {
       String[] splited = adjacentCountriesLines.split(",");
       String country = splited[0];
+      addNode(country);
       for (int i = 1; i < splited.length; i++) {
         adjacencyList.get(country).add(splited[i]);
       }
