@@ -10,7 +10,11 @@ public class CheckUserInput {
 
   public void exception(Map<String, Country> countries) {
     userInput = Utils.scanner.nextLine();
-    userInput = Utils.capitalizeFirstLetterOfEachWord(userInput.strip());
+    userInput = userInput.strip();
+    if (userInput.isEmpty()) {
+      throw new CountryNotFoundException();
+    }
+    userInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
     if (!countries.containsKey(userInput)) {
       MessageCli.INVALID_COUNTRY.printMessage(userInput);
       throw new CountryNotFoundException();
