@@ -4,9 +4,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 public class FormAStructure {
-  private Map<String, List<String>> adjacencyList;
+  private Map<String, Queue<String>> adjacencyList;
 
   public FormAStructure() {
     adjacencyList = new HashMap<>();
@@ -16,7 +17,7 @@ public class FormAStructure {
     adjacencyList.putIfAbsent(country, new LinkedList<>());
   }
 
-  public Map<String, List<String>> FormStructure(List<String> adjacencies) {
+  public Map<String, Queue<String>> FormStructure(List<String> adjacencies) {
     for (String adjacentCountriesLines : adjacencies) {
       String[] splited = adjacentCountriesLines.split(",");
       String country = splited[0];
