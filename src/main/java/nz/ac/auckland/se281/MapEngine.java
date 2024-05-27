@@ -1,17 +1,12 @@
 package nz.ac.auckland.se281;
 
-import java.util.HashMap;
 import java.util.List;
 
 /** This class is the main entry point. */
 public class MapEngine {
 
-  private HashMap<String, List<String>> adjacencyList;
-
   public MapEngine() {
     // add other code here if you want
-    adjacencyList = new HashMap<>();
-    Countries = new HashMap<>();
     loadMap(); // keep this mehtod invocation
   }
 
@@ -19,10 +14,6 @@ public class MapEngine {
   private void loadMap() {
     List<String> countries = Utils.readCountries();
     List<String> adjacencies = Utils.readAdjacencies();
-
-    for (String adjacentCountriesLines : adjacencies) {
-      String[] splited = adjacentCountriesLines.split(",");
-    }
   }
 
   /** this method is invoked when the user run the command info-country. */
