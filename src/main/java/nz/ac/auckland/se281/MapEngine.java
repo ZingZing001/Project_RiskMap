@@ -11,14 +11,15 @@ public class MapEngine {
   private FormAStructure loadA;
   private Map<String, Country> countries;
   private Map<String, List<String>> adjacentCountries;
-  private CheckIfCountryValid checkIfCountryValid;
+  private FindRoute fRoute;
+  private CheckUserInput checkUserInput;
 
   public MapEngine() {
     loadC = new FormCStructure();
     loadA = new FormAStructure();
     countries = new HashMap<>();
     adjacentCountries = new HashMap<>();
-    checkIfCountryValid = new CheckIfCountryValid();
+    checkUserInput = new CheckUserInput();
 
     loadMap(); // keep this method invocation
   }
@@ -29,33 +30,29 @@ public class MapEngine {
     List<String> adjacenciesRaw = Utils.readAdjacencies();
     countries = loadC.FormStructure(countriesRaw);
     adjacentCountries = loadA.FormStructure(adjacenciesRaw);
+    fRoute = new FindRoute(adjacentCountries);
   }
 
   /** this method is invoked when the user runs the command info-country. */
   public void showInfoCountry() {
-    checkIfCountryValid.getValidCountry(countries);
+    try {
+      String country = getValidCountry();
+      String name = countries.get(country).getName();
+      String continent = countries.get(country).getContinent();
+      String tax = countries.get(country).getTax() + "";
+      MessageCli.COUNTRY_INFO.printMessage(name, continent, tax);
+    } catch (CountryNotFoundException e) {
+      showInfoCountry();
+    }
   }
 
   /** this method is invoked when the user runs the command route. */
-  public void showRoute() {
-    String startCountry = getValidCountry();
-    String endCountry = getValidCountry();
-  }
+  public void showRoute() {}
 
-  private String getValidCountry() {
-    String userInput = null;
-    boolean validCountry = false;
-    MessageCli.INSERT_SOURCE.printMessage();
-    while (!validCountry) {
-      userInput = Utils.scanner.nextLine();
-      try {
-        userInput = userInput.strip();
-        checkIfCountryValid.getValidCountry(countries);
-        validCountry = true;
-      } catch (CountryNotFoundException e) {
-        MessageCli.INVALID_COUNTRY.printMessage(Utils.capitalizeFirstLetterOfEachWord(userInput));
-      }
-    }
-    return userInput;
+  private String getValidCountry() throws CountryNotFoundException {
+    MessageCli.INSERT_COUNTRY.printMessage();
+    String userInput = Utils.scanner.nextLine();
+    checkUserInput.checkValidCountry(countries, userInput);
+    return Utils.capitalizeFirstLetterOfEachWord(userInput);
   }
 }
