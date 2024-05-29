@@ -47,7 +47,28 @@ public class MapEngine {
   }
 
   /** this method is invoked when the user runs the command route. */
-  public void showRoute() {}
+  public void showRoute() {
+    String startCountry = null;
+    String endCountry = null;
+
+    while (startCountry == null) {
+      try {
+        MessageCli.INSERT_SOURCE.printMessage();
+        startCountry = getValidCountry();
+      } catch (CountryNotFoundException e) {
+        MessageCli.INVALID_COUNTRY.printMessage();
+      }
+    }
+
+    while (endCountry == null) {
+      try {
+        MessageCli.INSERT_DESTINATION.printMessage();
+        endCountry = getValidCountry();
+      } catch (CountryNotFoundException e) {
+        MessageCli.INVALID_COUNTRY.printMessage();
+      }
+      
+    }
 
   private String getValidCountry() throws CountryNotFoundException {
     MessageCli.INSERT_COUNTRY.printMessage();
