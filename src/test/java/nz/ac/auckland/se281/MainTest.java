@@ -11,10 +11,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({
-  MainTest.Task1.class,
-  // MainTest.Task2.class
-})
+@SuiteClasses({MainTest.Task1.class, MainTest.Task2.class})
 public class MainTest {
 
   @FixMethodOrder(MethodSorters.NAME_ASCENDING)
