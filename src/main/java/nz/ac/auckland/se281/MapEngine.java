@@ -35,14 +35,18 @@ public class MapEngine {
 
   /** this method is invoked when the user runs the command info-country. */
   public void showInfoCountry() {
-    try {
-      String country = getValidCountry();
-      String name = countries.get(country).getName();
-      String continent = countries.get(country).getContinent();
-      String tax = countries.get(country).getTax() + "";
-      MessageCli.COUNTRY_INFO.printMessage(name, continent, tax);
-    } catch (CountryNotFoundException e) {
-      showInfoCountry();
+    boolean validCountry = false;
+    while (!validCountry) {
+      try {
+        MessageCli.INSERT_COUNTRY.printMessage();
+        String country = getValidCountry();
+        String name = countries.get(country).getName();
+        String continent = countries.get(country).getContinent();
+        String tax = countries.get(country).getTax() + "";
+        MessageCli.COUNTRY_INFO.printMessage(name, continent, tax);
+        validCountry = true;
+      } catch (CountryNotFoundException e) {
+      }
     }
   }
 
@@ -56,7 +60,6 @@ public class MapEngine {
         MessageCli.INSERT_SOURCE.printMessage();
         startCountry = getValidCountry();
       } catch (CountryNotFoundException e) {
-        MessageCli.INVALID_COUNTRY.printMessage();
       }
     }
 
@@ -65,13 +68,13 @@ public class MapEngine {
         MessageCli.INSERT_DESTINATION.printMessage();
         endCountry = getValidCountry();
       } catch (CountryNotFoundException e) {
-        MessageCli.INVALID_COUNTRY.printMessage();
       }
-      
     }
+    List<String> list = fRoute.findR_BFS(startCountry, endCountry);
+    System.out.println(list);
+  }
 
   private String getValidCountry() throws CountryNotFoundException {
-    MessageCli.INSERT_COUNTRY.printMessage();
     String userInput = Utils.scanner.nextLine();
     checkUserInput.checkValidCountry(countries, userInput);
     return Utils.capitalizeFirstLetterOfEachWord(userInput);
