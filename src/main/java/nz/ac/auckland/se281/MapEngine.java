@@ -11,12 +11,15 @@ public class MapEngine {
   private FormAStructure loadA;
   private Map<String, Country> countries;
   private Map<String, List<String>> adjacentCountries;
+  private CheckIfCountryValid checkIfCountryValid;
 
   public MapEngine() {
     loadC = new FormCStructure();
     loadA = new FormAStructure();
     countries = new HashMap<>();
     adjacentCountries = new HashMap<>();
+    checkIfCountryValid = new CheckIfCountryValid();
+
     loadMap(); // keep this mehtod invocation
   }
 
@@ -30,20 +33,8 @@ public class MapEngine {
 
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
-    CheckUserInput inputChecks = new CheckUserInput();
-    String userInput;
-    boolean validCountry = false;
-    MessageCli.INSERT_COUNTRY.printMessage();
-    while (!validCountry) {
-      userInput = Utils.scanner.nextLine();
-      try {
-        userInput = userInput.strip();
-        inputChecks.exception(countries, userInput);
-        validCountry = true;
-      } catch (CountryNotFoundException e) {
-        MessageCli.INVALID_COUNTRY.printMessage(Utils.capitalizeFirstLetterOfEachWord(userInput));
-      }
-    }
+
+    String country = checkIfCountryValid.getValidCountry(countries);
   }
 
   /** this method is invoked when the user run the command route. */

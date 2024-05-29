@@ -6,9 +6,9 @@ public class CheckUserInput {
   private String name;
   private String continent;
   private String tax;
-  private String userInput;
 
-  public void exception(Map<String, Country> countries, String userInput) throws CountryNotFoundException{
+  public void exception(Map<String, Country> countries, String userInput)
+      throws CountryNotFoundException {
     if (userInput.isEmpty()) {
       throw new CountryNotFoundException();
     }
