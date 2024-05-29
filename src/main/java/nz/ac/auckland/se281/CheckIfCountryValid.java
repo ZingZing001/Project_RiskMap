@@ -17,7 +17,7 @@ public class CheckIfCountryValid {
       userInput = Utils.scanner.nextLine();
       try {
         userInput = userInput.strip();
-        inputChecks.exception(countries, userInput);
+        inputChecks.exception(countries, userInput, MessageCli.COUNTRY_INFO);
         validCountry = true;
       } catch (CountryNotFoundException e) {
         MessageCli.INVALID_COUNTRY.printMessage(Utils.capitalizeFirstLetterOfEachWord(userInput));

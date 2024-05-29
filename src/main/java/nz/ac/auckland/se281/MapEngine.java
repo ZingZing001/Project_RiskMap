@@ -20,10 +20,10 @@ public class MapEngine {
     adjacentCountries = new HashMap<>();
     checkIfCountryValid = new CheckIfCountryValid();
 
-    loadMap(); // keep this mehtod invocation
+    loadMap(); // keep this method invocation
   }
 
-  /** invoked one time only when constracting the MapEngine class. */
+  /** invoked one time only when constructing the MapEngine class. */
   private void loadMap() {
     List<String> countriesRaw = Utils.readCountries();
     List<String> adjacenciesRaw = Utils.readAdjacencies();
@@ -31,12 +31,31 @@ public class MapEngine {
     adjacentCountries = loadA.FormStructure(adjacenciesRaw);
   }
 
-  /** this method is invoked when the user run the command info-country. */
+  /** this method is invoked when the user runs the command info-country. */
   public void showInfoCountry() {
-
-    String country = checkIfCountryValid.getValidCountry(countries);
+    checkIfCountryValid.getValidCountry(countries);
   }
 
-  /** this method is invoked when the user run the command route. */
-  public void showRoute() {}
+  /** this method is invoked when the user runs the command route. */
+  public void showRoute() {
+    String startCountry = getValidCountry();
+    String endCountry = getValidCountry();
+  }
+
+  private String getValidCountry() {
+    String userInput = null;
+    boolean validCountry = false;
+    MessageCli.INSERT_SOURCE.printMessage();
+    while (!validCountry) {
+      userInput = Utils.scanner.nextLine();
+      try {
+        userInput = userInput.strip();
+        checkIfCountryValid.getValidCountry(countries);
+        validCountry = true;
+      } catch (CountryNotFoundException e) {
+        MessageCli.INVALID_COUNTRY.printMessage(Utils.capitalizeFirstLetterOfEachWord(userInput));
+      }
+    }
+    return userInput;
+  }
 }

@@ -7,7 +7,7 @@ public class CheckUserInput {
   private String continent;
   private String tax;
 
-  public void exception(Map<String, Country> countries, String userInput)
+  public void exception(Map<String, Country> countries, String userInput, MessageCli messageCli)
       throws CountryNotFoundException {
     if (userInput.isEmpty()) {
       throw new CountryNotFoundException();
@@ -19,7 +19,7 @@ public class CheckUserInput {
       name = countries.get(userInput).getName();
       continent = countries.get(userInput).getContinent();
       tax = countries.get(userInput).getTax() + "";
-      MessageCli.COUNTRY_INFO.printMessage(name, continent, tax);
+      messageCli.printMessage(name, continent, tax);
     }
   }
 }
