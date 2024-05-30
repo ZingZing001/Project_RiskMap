@@ -16,7 +16,7 @@ public class FormAllStructure {
     adjacencyList.putIfAbsent(country, new LinkedList<>());
   }
 
-  public Map<String, List<String>> FormStructure(List<String> adjacencies) {
+  public Map<String, List<String>> generateAdjacencyStructure(List<String> adjacencies) {
     for (String adjacentCountriesLines : adjacencies) {
       String[] splited = adjacentCountriesLines.split(",");
       String country = splited[0];

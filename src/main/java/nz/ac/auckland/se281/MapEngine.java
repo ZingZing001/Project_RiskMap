@@ -31,7 +31,7 @@ public class MapEngine {
     List<String> countriesRaw = Utils.readCountries();
     List<String> adjacenciesRaw = Utils.readAdjacencies();
     countries = loadC.initializeCountryStructure(countriesRaw);
-    adjacentCountries = loadA.FormStructure(adjacenciesRaw);
+    adjacentCountries = loadA.generateAdjacencyStructure(adjacenciesRaw);
     fRoute = new FindRoute(adjacentCountries);
   }
 
