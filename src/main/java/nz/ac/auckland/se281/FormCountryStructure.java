@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FormCStructure {
+public class FormCountryStructure {
   private Map<String, Country> Countries;
 
-  public FormCStructure() {
+  public FormCountryStructure() {
     Countries = new HashMap<>();
   }
 
