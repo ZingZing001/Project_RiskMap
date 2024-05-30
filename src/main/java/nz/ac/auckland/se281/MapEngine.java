@@ -1,8 +1,11 @@
 package nz.ac.auckland.se281;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /** This class is the main entry point. */
 public class MapEngine {
@@ -52,8 +55,10 @@ public class MapEngine {
 
   /** this method is invoked when the user runs the command route. */
   public void showRoute() {
+    Set<String> continentSet;
     String startCountry = null;
     String endCountry = null;
+    List<String> list;
 
     while (startCountry == null) {
       try {
@@ -70,8 +75,17 @@ public class MapEngine {
       } catch (CountryNotFoundException e) {
       }
     }
-    List<String> list = fRoute.findR_BFS(startCountry, endCountry);
-    System.out.println(list);
+    list = fRoute.findR_BFS(startCountry, endCountry);
+    continentSet = new LinkedHashSet<>();
+    if (startCountry.equals(endCountry)) {
+      MessageCli.NO_CROSSBORDER_TRAVEL.printMessage();
+    } else {
+      MessageCli.ROUTE_INFO.printMessage(list.toString());
+      for(String country: list){
+        continentSet.add(countries.get(country).getContinent());
+      }
+      MessageCli.CONTINENT_INFO.printMessage(continentSet.toString());
+    }
   }
 
   private String getValidCountry() throws CountryNotFoundException {
