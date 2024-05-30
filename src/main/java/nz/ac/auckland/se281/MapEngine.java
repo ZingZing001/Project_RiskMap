@@ -1,7 +1,6 @@
 package nz.ac.auckland.se281;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -80,11 +79,14 @@ public class MapEngine {
     if (startCountry.equals(endCountry)) {
       MessageCli.NO_CROSSBORDER_TRAVEL.printMessage();
     } else {
+      int totalTax = 0;
       MessageCli.ROUTE_INFO.printMessage(list.toString());
-      for(String country: list){
+      for (String country : list) {
         continentSet.add(countries.get(country).getContinent());
+        totalTax += countries.get(country).getTax();
       }
       MessageCli.CONTINENT_INFO.printMessage(continentSet.toString());
+      MessageCli.TAX_INFO.printMessage(totalTax + "");
     }
   }
 
