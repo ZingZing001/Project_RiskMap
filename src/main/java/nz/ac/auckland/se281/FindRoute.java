@@ -15,7 +15,7 @@ public class FindRoute {
     this.adjNodes = map;
   }
 
-  public List<String> findR_BFS(String start, String des) {
+  public List<String> breadthFirstSearchRoute(String start, String des) {
     Queue<String> queue = new LinkedList<>();
     Map<String, String> par = new HashMap<>();
     queue.add(start);

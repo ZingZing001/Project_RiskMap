@@ -77,7 +77,7 @@ public class MapEngine {
         // Catch block intentionally left empty to loop until valid input is provided
       }
     }
-    list = fRoute.findR_BFS(startCountry, endCountry);
+    list = fRoute.breadthFirstSearchRoute(startCountry, endCountry);
     continentSet = new LinkedHashSet<>();
     if (startCountry.equals(endCountry)) {
       MessageCli.NO_CROSSBORDER_TRAVEL.printMessage();
