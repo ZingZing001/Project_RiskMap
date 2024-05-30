@@ -48,6 +48,7 @@ public class MapEngine {
         MessageCli.COUNTRY_INFO.printMessage(name, continent, tax);
         validCountry = true;
       } catch (CountryNotFoundException e) {
+        // Catch block intentionally left empty to loop until valid input is provided
       }
     }
   }
@@ -64,6 +65,7 @@ public class MapEngine {
         MessageCli.INSERT_SOURCE.printMessage();
         startCountry = getValidCountry();
       } catch (CountryNotFoundException e) {
+        // Catch block intentionally left empty to loop until valid input is provided
       }
     }
 
@@ -72,6 +74,7 @@ public class MapEngine {
         MessageCli.INSERT_DESTINATION.printMessage();
         endCountry = getValidCountry();
       } catch (CountryNotFoundException e) {
+        // Catch block intentionally left empty to loop until valid input is provided
       }
     }
     list = fRoute.findR_BFS(startCountry, endCountry);
