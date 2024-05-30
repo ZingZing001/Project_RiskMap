@@ -11,7 +11,7 @@ public class FormCountryStructure {
     Countries = new HashMap<>();
   }
 
-  public Map<String, Country> FormStructure(List<String> countries) {
+  public Map<String, Country> initializeCountryStructure(List<String> countries) {
     for (String CountriesLine : countries) {
       String[] splited = CountriesLine.split(",");
       String country = splited[0];

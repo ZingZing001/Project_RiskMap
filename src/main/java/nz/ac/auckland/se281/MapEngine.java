@@ -30,7 +30,7 @@ public class MapEngine {
   private void loadMap() {
     List<String> countriesRaw = Utils.readCountries();
     List<String> adjacenciesRaw = Utils.readAdjacencies();
-    countries = loadC.FormStructure(countriesRaw);
+    countries = loadC.initializeCountryStructure(countriesRaw);
     adjacentCountries = loadA.FormStructure(adjacenciesRaw);
     fRoute = new FindRoute(adjacentCountries);
   }
