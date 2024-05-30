@@ -85,6 +85,8 @@ public class MapEngine {
         continentSet.add(countries.get(country).getContinent());
         totalTax += countries.get(country).getTax();
       }
+      int selfTax = countries.get(list.get(0)).getTax();
+      totalTax -= selfTax;
       MessageCli.CONTINENT_INFO.printMessage(continentSet.toString());
       MessageCli.TAX_INFO.printMessage(totalTax + "");
     }
