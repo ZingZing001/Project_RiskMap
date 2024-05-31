@@ -13,7 +13,7 @@ public class MapEngine {
   private FormAllStructure loadAll;
   private Map<String, Country> countries;
   private Map<String, List<String>> adjacentCountries;
-  private FindRoute fRoute;
+  private FindRoute findRoute;
   private CheckUserInput checkUserInput;
 
   public MapEngine() {
@@ -32,7 +32,7 @@ public class MapEngine {
     List<String> adjacenciesRaw = Utils.readAdjacencies();
     countries = loadCountries.initializeCountryStructure(countriesRaw);
     adjacentCountries = loadAll.generateAdjacencyStructure(adjacenciesRaw);
-    fRoute = new FindRoute(adjacentCountries);
+    findRoute = new FindRoute(adjacentCountries);
   }
 
   /** this method is invoked when the user runs the command info-country. */
@@ -77,7 +77,7 @@ public class MapEngine {
         // Catch block intentionally left empty to loop until valid input is provided
       }
     }
-    list = fRoute.breadthFirstSearchRoute(startCountry, endCountry);
+    list = findRoute.breadthFirstSearchRoute(startCountry, endCountry);
     continentSet = new LinkedHashSet<>();
     if (startCountry.equals(endCountry)) {
       MessageCli.NO_CROSSBORDER_TRAVEL.printMessage();
