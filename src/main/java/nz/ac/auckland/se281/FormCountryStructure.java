@@ -15,7 +15,7 @@ public class FormCountryStructure {
 
   /** Constructs a {@code FormCountryStructure} with an empty map to store country objects. */
   public FormCountryStructure() {
-    coutriesMap = new HashMap<>();
+    coutriesMap = new HashMap<>(); // Initializes an empty HashMap to store the country data.
   }
 
   /**
@@ -30,12 +30,15 @@ public class FormCountryStructure {
    */
   public Map<String, Country> initializeCountryStructure(List<String> countries) {
     for (String countryInfo : countries) {
+      // Split each line of country info into an array, where elements represent name, continent,
+      // and tax
       String[] splited = countryInfo.split(",");
-      String country = splited[0];
-      String continent = splited[1];
-      int tax = Integer.parseInt(splited[2]);
+      String country = splited[0]; // First element is the country name
+      String continent = splited[1]; // Second element is the continent
+      int tax = Integer.parseInt(splited[2]); // Third element is the tax, converted to integer
+      // Put the country object into the map with the country name as the key
       coutriesMap.put(country, new Country(country, continent, tax));
     }
-    return coutriesMap;
+    return coutriesMap; // Return the complete map of country objects
   }
 }

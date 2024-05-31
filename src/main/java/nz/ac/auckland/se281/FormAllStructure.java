@@ -15,7 +15,7 @@ public class FormAllStructure {
 
   /** Constructs an empty {@code FormAllStructure} with an empty adjacency list. */
   public FormAllStructure() {
-    adjacencyList = new HashMap<>();
+    adjacencyList = new HashMap<>(); // Initialize an empty HashMap to store adjacency list
   }
 
   /**
@@ -24,6 +24,8 @@ public class FormAllStructure {
    * @param country the node (country) to be added to the adjacency list.
    */
   public void addNode(String country) {
+    // Puts the country in the adjacency list if it's not already there, initializing with an empty
+    // list
     adjacencyList.putIfAbsent(country, new LinkedList<>());
   }
 
@@ -39,13 +41,15 @@ public class FormAllStructure {
    */
   public Map<String, List<String>> generateAdjacencyStructure(List<String> adjacencies) {
     for (String adjacentCountriesLines : adjacencies) {
+      // Split each line of adjacencies into an array, where the first element is the country
       String[] splited = adjacentCountriesLines.split(",");
-      String country = splited[0];
-      addNode(country);
+      String country = splited[0]; // The first element is the country name
+      addNode(country); // Ensure the country is added as a node
       for (int i = 1; i < splited.length; i++) {
+        // Add each adjacent country to the list of the main country in the adjacency list
         adjacencyList.get(country).add(splited[i]);
       }
     }
-    return adjacencyList;
+    return adjacencyList; // Return the complete map of countries with their respective adjacencies
   }
 }
