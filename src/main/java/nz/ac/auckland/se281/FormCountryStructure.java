@@ -11,11 +11,11 @@ import java.util.Map;
  */
 public class FormCountryStructure {
   private Map<String, Country>
-      Countries; // Stores a map of countries, using the country name as the key.
+      coutriesMap; // Stores a map of countries, using the country name as the key.
 
   /** Constructs a {@code FormCountryStructure} with an empty map to store country objects. */
   public FormCountryStructure() {
-    Countries = new HashMap<>();
+    coutriesMap = new HashMap<>();
   }
 
   /**
@@ -29,13 +29,13 @@ public class FormCountryStructure {
    *     Country} object, fully initialized with name, continent, and tax.
    */
   public Map<String, Country> initializeCountryStructure(List<String> countries) {
-    for (String CountriesLine : countries) {
-      String[] splited = CountriesLine.split(",");
+    for (String countryInfo : countries) {
+      String[] splited = countryInfo.split(",");
       String country = splited[0];
       String continent = splited[1];
       int tax = Integer.parseInt(splited[2]);
-      Countries.put(country, new Country(country, continent, tax));
+      coutriesMap.put(country, new Country(country, continent, tax));
     }
-    return Countries;
+    return coutriesMap;
   }
 }
