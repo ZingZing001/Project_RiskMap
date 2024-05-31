@@ -6,16 +6,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/** This class is the main entry point. */
+/**
+ * The {@code MapEngine} class is the main control center that integrates various components to
+ * manage and interact with geographical data about countries and their relationships. It loads and
+ * manages country data and adjacency relationships, and provides functionality to display country
+ * information and find routes between countries.
+ */
 public class MapEngine {
 
-  private FormCountryStructure loadCountries;
-  private FormAllStructure loadAll;
-  private Map<String, Country> countries;
-  private Map<String, List<String>> adjacentCountries;
-  private FindRoute findRoute;
-  private CheckUserInput checkUserInput;
+  private FormCountryStructure loadCountries; // Handles loading and initialization of country data
+  private FormAllStructure loadAll; // Handles generation of adjacency structure for countries
+  private Map<String, Country> countries; // Stores country data mapped by country name
+  private Map<String, List<String>> adjacentCountries; // Stores adjacency list of countries
+  private FindRoute findRoute; // Provides functionality to find routes between countries
+  private CheckUserInput checkUserInput; // Validates user input for country names
 
+  /**
+   * Initializes the {@code MapEngine} by setting up necessary structures and loading initial data.
+   */
   public MapEngine() {
     loadCountries = new FormCountryStructure();
     loadAll = new FormAllStructure();
@@ -26,7 +34,10 @@ public class MapEngine {
     loadMap(); // keep this method invocation
   }
 
-  /** invoked one time only when constructing the MapEngine class. */
+  /**
+   * Loads country and adjacency data from external sources and initializes the necessary data
+   * structures. This method is called once during the instantiation of {@code MapEngine}.
+   */
   private void loadMap() {
     List<String> countriesRaw = Utils.readCountries();
     List<String> adjacenciesRaw = Utils.readAdjacencies();
@@ -35,7 +46,10 @@ public class MapEngine {
     findRoute = new FindRoute(adjacentCountries);
   }
 
-  /** this method is invoked when the user runs the command info-country. */
+  /**
+   * Displays information about a country based on user input. It loops until valid country input is
+   * provided. This method handles user interactions and exceptions internally.
+   */
   public void showInfoCountry() {
     boolean validCountry = false;
     while (!validCountry) {
@@ -53,7 +67,10 @@ public class MapEngine {
     }
   }
 
-  /** this method is invoked when the user runs the command route. */
+  /**
+   * Finds and displays the route between two countries based on user input. It continues prompting
+   * the user until valid start and destination countries are provided.
+   */
   public void showRoute() {
     Set<String> continentSet;
     String startCountry = null;
@@ -95,6 +112,12 @@ public class MapEngine {
     }
   }
 
+  /**
+   * Helper method to validate the country name input by the user.
+   *
+   * @return the validated and formatted country name.
+   * @throws CountryNotFoundException if the input does not correspond to a valid country.
+   */
   private String getValidCountry() throws CountryNotFoundException {
     String userInput = Utils.scanner.nextLine();
     checkUserInput.checkValidCountry(countries, userInput);
