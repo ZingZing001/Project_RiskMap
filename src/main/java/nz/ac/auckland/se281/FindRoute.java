@@ -3,10 +3,12 @@ package nz.ac.auckland.se281;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 public class FindRoute {
   private Map<String, List<String>> adjNodes;
@@ -18,10 +20,12 @@ public class FindRoute {
   public List<String> breadthFirstSearchRoute(String start, String des) {
     Queue<String> queue = new LinkedList<>();
     Map<String, String> par = new HashMap<>();
+    Set<String> visited = new HashSet<>();
     queue.add(start);
     par.put(start, null);
     while (!queue.isEmpty()) {
       String node = queue.poll();
+      visited.add(node);
       if (node.equals(des)) {
         break;
       }
