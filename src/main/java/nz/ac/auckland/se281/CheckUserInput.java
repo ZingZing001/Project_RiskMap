@@ -4,7 +4,8 @@ import java.util.Map;
 
 /**
  * The {@code CheckUserInput} class provides methods to validate user input against predefined
- * criteria.
+ * criteria. It primarily checks if the user's input matches a valid country name from a provided
+ * map.
  */
 public class CheckUserInput {
 
@@ -22,15 +23,20 @@ public class CheckUserInput {
   public void checkValidCountry(Map<String, Country> countries, String userInput)
       throws CountryNotFoundException {
     if (userInput == null || userInput.trim().isEmpty()) {
-      MessageCli.INVALID_COUNTRY.printMessage(userInput);
-      throw new CountryNotFoundException();
+      MessageCli.INVALID_COUNTRY.printMessage(
+          userInput); // Print error message if input is null or empty
+      throw new CountryNotFoundException(); // Throw exception indicating that the country was not
+                                            // found
     }
 
-    userInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
+    userInput =
+        Utils.capitalizeFirstLetterOfEachWord(userInput); // Normalize the input to match map keys
 
     if (!countries.containsKey(userInput)) {
-      MessageCli.INVALID_COUNTRY.printMessage(userInput);
-      throw new CountryNotFoundException();
+      MessageCli.INVALID_COUNTRY.printMessage(
+          userInput); // Print error message if country is not in the map
+      throw new CountryNotFoundException(); // Throw exception indicating that the country was not
+                                            // found
     }
   }
 }
