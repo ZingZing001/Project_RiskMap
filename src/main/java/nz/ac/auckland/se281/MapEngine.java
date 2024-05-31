@@ -9,16 +9,16 @@ import java.util.Set;
 /** This class is the main entry point. */
 public class MapEngine {
 
-  private FormCountryStructure loadC;
-  private FormAllStructure loadA;
+  private FormCountryStructure loadCountries;
+  private FormAllStructure loadAll;
   private Map<String, Country> countries;
   private Map<String, List<String>> adjacentCountries;
   private FindRoute fRoute;
   private CheckUserInput checkUserInput;
 
   public MapEngine() {
-    loadC = new FormCountryStructure();
-    loadA = new FormAllStructure();
+    loadCountries = new FormCountryStructure();
+    loadAll = new FormAllStructure();
     countries = new HashMap<>();
     adjacentCountries = new HashMap<>();
     checkUserInput = new CheckUserInput();
@@ -30,8 +30,8 @@ public class MapEngine {
   private void loadMap() {
     List<String> countriesRaw = Utils.readCountries();
     List<String> adjacenciesRaw = Utils.readAdjacencies();
-    countries = loadC.initializeCountryStructure(countriesRaw);
-    adjacentCountries = loadA.generateAdjacencyStructure(adjacenciesRaw);
+    countries = loadCountries.initializeCountryStructure(countriesRaw);
+    adjacentCountries = loadAll.generateAdjacencyStructure(adjacenciesRaw);
     fRoute = new FindRoute(adjacentCountries);
   }
 
