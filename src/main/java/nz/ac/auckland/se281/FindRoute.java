@@ -10,13 +10,35 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * The {@code FindRoute} class represents a graph using adjacency list representation and provides a
+ * method to find the shortest path between two nodes using the breadth-first search (BFS)
+ * algorithm.
+ */
 public class FindRoute {
-  private Map<String, List<String>> adjNodes;
+  private Map<String, List<String>> adjNodes; // adjacency list representation of the graph
 
+  /**
+   * Constructs a {@code FindRoute} object with a specified adjacency list map.
+   *
+   * @param map the map representing the adjacency list of the graph, where each key is a node and
+   *     the corresponding value is a list of adjacent nodes.
+   */
   public FindRoute(Map<String, List<String>> map) {
     this.adjNodes = map;
   }
 
+  /**
+   * Performs a breadth-first search (BFS) to find the shortest path from a start node to a
+   * destination node. It tracks visited nodes and parent nodes to reconstruct the path once the
+   * destination is reached.
+   *
+   * @param start the starting node for the BFS.
+   * @param des the destination node to which the shortest path is sought.
+   * @return a list of strings representing the nodes in the path from the start node to the
+   *     destination node, in order from start to destination. If no path is found, returns an empty
+   *     list.
+   */
   public List<String> breadthFirstSearchRoute(String start, String des) {
     Queue<String> queue = new LinkedList<>();
     Map<String, String> par = new HashMap<>();
@@ -30,7 +52,7 @@ public class FindRoute {
         break;
       }
       for (String n : adjNodes.get(node)) {
-        if (!par.containsKey(n)) {
+        if (!visited.contains(n) && !par.containsKey(n)) {
           queue.add(n);
           par.put(n, node);
         }
